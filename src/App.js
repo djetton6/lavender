@@ -1,23 +1,27 @@
 import React from 'react';
 import './App.css';
 import Routes from './routes';
+import {Link, useHistory } from 'react-router-dom';
 
 function App() {
+
+  const history = useHistory();
+  const [state, setstate] = useState("");
+
+  //if we are on a page, we don't want that page to show up in the navbar
+  window.addEventListener("load", () => {
+    if(window.location.pathname == "/contact"){
+      setPath(window.location.pathname);
+    }
+  });
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+
+      </div>
     </div>
   );
 }
