@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import Routes from './routes';
 import {Link, useHistory } from 'react-router-dom';
@@ -6,21 +6,48 @@ import {Link, useHistory } from 'react-router-dom';
 function App() {
 
   const history = useHistory();
-  const [state, setstate] = useState("");
+  const [path, setPath] = useState("");
 
   //if we are on a page, we don't want that page to show up in the navbar
+  //https://youtu.be/DaPmdk8Ejns?t=1480
+
   window.addEventListener("load", () => {
-    if(window.location.pathname == "/contact"){
+    if(window.location.pathname === "/contact"){
       setPath(window.location.pathname);
     }
   });
 
+  const checkPath = () => {
+    history.listen((location) => {
+      setPath(location.pathname);
+    });
+  }
+
+  useEffect(() => {
+    checkPath();
+  }, []);
+
+
+  const showContact = path;
+  let _contact;
+  if(showContact != "/contact"){
+    _contact = (<li><Link to="/contact">Contact Me</Link></li>)
+
+  } 
 
 
   return (
     <div className="App">
       <div className="container">
-
+        <nav>
+          <ul>
+            <li><Link to="/"> NewReactRouter</Link></li>
+          </ul>
+          <ul>
+            {_contact}
+          </ul>
+        </nav>
+          <Routes />
       </div>
     </div>
   );
