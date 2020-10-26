@@ -30,9 +30,8 @@ function App() {
 
   const showContact = path;
   let _contact;
-  if(showContact != "/contact"){
+  if(showContact !== "/contact"){
     _contact = (<li><Link to="/contact">Contact Me</Link></li>)
-
   } 
 
 
